@@ -27,8 +27,16 @@ export interface AICareResponse {
     message: string;
     actions: string[];
   };
+  notCovered?: {
+    title: string;
+    message: string;
+    discordUrl: string;
+  };
   disclaimer: string;
 }
+
+// TODO: replace with the real CareVillage Discord invite link
+const CAREVILLAGE_DISCORD_URL = 'https://discord.gg/carevillage';
 
 const trustedCareSources: Record<string, AITrustedSource> = {
   alzCaregiving: {
@@ -530,7 +538,29 @@ export async function analyzeCareQuery(query: string): Promise<AICareResponse> {
     // Detect category and specific scenario from keywords
     const { category: detectedCategory, scenario } = detectCategoryAndScenario(query);
     const urgentNotice = detectUrgentNotice(query);
-    
+
+    // Query matched no category or scenario at all (the final fallthrough in
+    // detectCategoryAndScenario) - don't guess with a generic canned answer,
+    // point the caregiver to real humans instead.
+    if (!urgentNotice && detectedCategory === 'general' && scenario === 'general') {
+      return {
+        explanation: "We don't have this specific topic covered yet.",
+        tips: [],
+        searchSuggestions: [query],
+        relatedTopics: [],
+        category: 'General',
+        matchedResources: [],
+        trustedSources: [],
+        notCovered: {
+          title: "This topic isn't covered yet",
+          message:
+            "Our assistant doesn't have a specific answer for this. For personalized help, talk with real caregivers in CareVillage, DementiaAide's Discord community.",
+          discordUrl: CAREVILLAGE_DISCORD_URL,
+        },
+        disclaimer: STANDARD_DISCLAIMER,
+      };
+    }
+
     // Scenario-specific responses for common situations
     const scenarioResponses: { [key: string]: Partial<AICareResponse> } = {
       wandering_night: {

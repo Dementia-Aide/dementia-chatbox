@@ -18,6 +18,26 @@ const SUGGESTED_QUERIES = [
 ];
 
 function AssistantBubble({ response }: { response: AICareResponse }) {
+  if (response.notCovered) {
+    return (
+      <div className="bubble assistant">
+        <div className="not-covered">
+          <strong>{response.notCovered.title}</strong>
+          <p>{response.notCovered.message}</p>
+          <a
+            className="discord-link"
+            href={response.notCovered.discordUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Join CareVillage on Discord
+          </a>
+        </div>
+        <p className="disclaimer">{response.disclaimer}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="bubble assistant">
       {response.urgentNotice && (
