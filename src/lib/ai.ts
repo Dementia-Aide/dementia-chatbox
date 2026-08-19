@@ -35,8 +35,7 @@ export interface AICareResponse {
   disclaimer: string;
 }
 
-// TODO: replace with the real CareVillage Discord invite link
-const CAREVILLAGE_DISCORD_URL = 'https://discord.gg/carevillage';
+const CAREVILLAGE_DISCORD_URL = 'https://discord.gg/eAxuHvQpX';
 
 const trustedCareSources: Record<string, AITrustedSource> = {
   alzCaregiving: {
