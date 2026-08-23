@@ -56,4 +56,64 @@ When ai.ts wants to recommend articles for a question, it checks the title/summa
 Step 5:
 resources.ts:450 (getResourceUrl) is what turns a cards slug into the actual clickable link to Ana's blog.
 
+# How To Add Your Own Stuff (for Ana)
+
+Note: line numbers move around as the file grows, so these just show you the format/shape to copy. Look for the word in **bold** to find where it lives in the file now.
+
+### Adding a new blog article (resources.ts)
+
+Find the **resources** list and paste a new card in, following the same shape as the others:
+
+```ts
+{
+  title: 'Your Article Title Here',
+  slug: 'your-article-title-here', // has to match the actual URL on the blog
+  category: 'Daily Care', // pick one of the 7 catagories from resourceCategoryMeta
+  summary: 'One sentence describing what the article covers.',
+  tags: ['keyword1', 'keyword2', 'keyword3'], // words caregivers might type
+  featured: true, // optional, only add this line if you want it highlighted
+},
+```
+
+### Adding a new pre written answer (ai.ts)
+
+This takes 2 steps, they both have to be done together or the new answer will never get picked.
+
+1. Find **detectCategoryAndScenario** and add a new "if" so it recognizes the topic:
+```ts
+if (lowerQuery.match(/keyword1|keyword2|another phrase/)) {
+  return { category: 'daily', scenario: 'your_new_scenario_name' };
+}
+```
+
+2. Find **scenarioResponses** and add a matching card using that same scenario name:
+```ts
+your_new_scenario_name: {
+  category: 'Daily Care',
+  explanation: 'A paragraph explaining why this happens and how to think about it.',
+  tips: [
+    'First practical tip',
+    'Second practical tip',
+    'Add as many as feel useful, existing cards have around 10'
+  ]
+},
+```
+
+### Adding a new trusted source link (ai.ts)
+
+Find **trustedCareSources** and add a new entry:
+```ts
+yourSourceKey: {
+  title: 'Name of the Article/Page',
+  publisher: 'Organization Name',
+  summary: 'One sentence about what it covers.',
+  url: 'https://...',
+},
+```
+Then, to actually attach it to answers, find **sourceKeysByScenario** or **sourceKeysByCategory** and add `'yourSourceKey'` into the list for the topics it fits.
+
+### Adding a new emergency / 911 trigger (ai.ts)
+
+Find **detectUrgentNotice** and add a new "if" block following the same shape as the existing ones (title, message, actions), with a regex of the phrases that should trigger it.
+
 
