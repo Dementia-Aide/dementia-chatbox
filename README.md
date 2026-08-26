@@ -1,6 +1,6 @@
 # DementiaAide Assistant (MVP)
 
-Easy to undertstand Guide on how the chatbot works for Ana!
+Easy to undertstand Guide on how the chatbot works
 
 # Picture of How It Works
 
@@ -56,7 +56,7 @@ When ai.ts wants to recommend articles for a question, it checks the title/summa
 Step 5:
 resources.ts:450 (getResourceUrl) is what turns a cards slug into the actual clickable link to Ana's blog.
 
-# How To Add Your Own Stuff (for Ana)
+# How To Add Your Own Stuff 
 
 Note: line numbers move around as the file grows, so these just show you the format/shape to copy. Look for the word in **bold** to find where it lives in the file now.
 
