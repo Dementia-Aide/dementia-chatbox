@@ -1,0 +1,8 @@
+name = "dementia-chatbox"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-09-04"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "usersearches"
+database_id = "e1e8f083-093e-41d2-b29d-c7e68c92a8c9"
