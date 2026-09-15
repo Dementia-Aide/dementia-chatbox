@@ -1,3 +1,5 @@
+// Scores and ranks DementiaAide resource-library entries against a query,
+// returning the top matches (or featured resources if nothing scores).
 import { getResourceUrl, resources, type Resource } from '../../resources';
 import type { AIResourceRecommendation } from '../types';
 import { resourceCategoryBoosts } from '../knowledge/resourceBoosts';

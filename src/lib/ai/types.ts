@@ -1,3 +1,4 @@
+// Shape of the data returned by the chat pipeline (index.ts) and rendered by App.tsx.
 export interface AIResourceRecommendation {
   title: string;
   summary: string;

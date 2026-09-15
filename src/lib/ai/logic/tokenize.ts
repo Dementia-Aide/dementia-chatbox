@@ -1,3 +1,4 @@
+// Splits a query into searchable words and expands them with known synonyms.
 import { querySynonyms } from '../knowledge/synonyms';
 
 export function tokenize(value: string) {

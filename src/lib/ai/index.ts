@@ -1,3 +1,6 @@
+// Main entry point for Ask Aide's rule-based response pipeline: routes a
+// query to a category/scenario, checks for emergencies, and builds the
+// final response. No LLM call happens here — it's deterministic keyword matching.
 import type { AICareResponse } from './types';
 import { CAREVILLAGE_DISCORD_URL, STANDARD_DISCLAIMER } from './knowledge/constants';
 import { detectCategoryAndScenario } from './logic/scenarioRouter';

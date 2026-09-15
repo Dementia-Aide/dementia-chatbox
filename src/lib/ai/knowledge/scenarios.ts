@@ -1,3 +1,5 @@
+// Canned explanation/tips for each specific scenario (e.g. wandering_night),
+// keyed by the scenario id produced by scenarioRouting.ts.
 import type { AICareResponse } from '../types';
 
 export interface ScenarioContent {
