@@ -1,3 +1,6 @@
+// Assembles the final AICareResponse: canned copy for the matched scenario/
+// category, plus matched resources and trusted sources pulled in from the
+// other logic modules.
 import type { AICareResponse } from '../types';
 import { scenarioResponses } from '../knowledge/scenarios';
 import { categoryFallbacks } from '../knowledge/categories';
